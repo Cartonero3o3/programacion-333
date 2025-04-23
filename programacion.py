@@ -1,5 +1,33 @@
 import pandas as pd
 
+
+# jugamos coon el codigo
+def bubble_sort_basico(lista):
+    n = len(lista)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if lista[j] > lista[j + 1]:
+                lista[j], lista[j + 1] = lista[j + 1], lista[j]
+    return lista
+
+valores = [5, 2, 9, 1, 5, 6]
+print("Original:", valores)
+print("Ordenado:", bubble_sort_basico(valores.copy()))
+
+def insertion_sort(lista):
+    for i in range(1, len(lista)):
+        actual = lista[i]
+        j = i - 1
+        while j >= 0 and lista[j] > actual:
+            lista[j + 1] = lista[j]
+            j -= 1
+        lista[j + 1] = actual
+    return lista
+
+valores = [9, 3, 7, 1, 5]
+print("Original:", valores)
+print("Ordenado:", insertion_sort(valores.copy()))
+
 data = {
     "ID_Reporte": [1, 2, 3, 4],
     "Descripción": [
@@ -14,7 +42,6 @@ data = {
 
 df = pd.DataFrame(data)
 
-# Buscar palabras clave según el contenido de la descripción
 df["Tipo"] = df["Descripción"].apply(
     lambda x: "Bache" if "Bache" in x else
               "Alumbrado" if "Alumbrado" in x else
